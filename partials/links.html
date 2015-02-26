@@ -1,22 +1,31 @@
-<div class="col-md-6">
+<div class="col-md-12">
   <h3>Add a new link</h3>
   <form ng-submit="LinksFactory.addLink()" class="form-inline" role="form">
     <div class="form-group">
-      <input type="text" ng-model="LinksFactory.linkTitle" class="form-control" placeholder="Enter a title" autofocus required>
+      <input type="text" ng-model="LinksFactory.linkTitle" size="50" class="form-control" placeholder="Enter a title" autofocus required>
     </div>
     <div class="form-group">
-      <input type="text" ng-model="LinksFactory.linkUrl" class="form-control" placeholder="Enter a link" required>
+      <input type="url" ng-model="LinksFactory.linkUrl" size="50" class="form-control" placeholder="Enter a link" required>
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
 
 <div ng-show="links.length">
   <h3>Latest:</h3>
-  <ul>
-    <li ng-repeat="item in links">
-      <a ui-sref="links.comments({ linkId: item.id })">{{ item.url }}</a>
+  <ol>
+    <li ng-repeat="item in links | orderBy:'orderPost':true">
+      <button ng-click="item.addVote()">Vote</button>
+      &nbsp;&nbsp;
+      <a href="{{ item.url }}" target="_blank">{{ item.title }}</a>
+      &nbsp;&nbsp;
+      <a ui-sref="links.comments({ linkId: item.id })">{{ item.comments.length }} Comments</a>
+      &nbsp;&nbsp;
+      points: {{ item.points }}
+        &nbsp;&nbsp;
+      created: {{ item.dateCreated.toLocaleString() }}
     </li>
-  </ul>
+
+  </ol>
 </div>
 </div>
 
