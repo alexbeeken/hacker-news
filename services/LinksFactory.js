@@ -13,7 +13,11 @@ hackerNews.factory('LinksFactory', function LinksFactory() {
       orderPost: Date.now(),
       addVote: function() {
         this.points++;
-        this.orderPost = this.dateNow + (this.points * 10000);
+        this.orderPost = this.dateNow + (10000);
+      },
+      subtractVote: function() {
+        this.points--;
+        this.orderPost = this.dateNow - (10000);
       }
     });
     factory.linkTitle = null;

@@ -24,26 +24,29 @@ td {
       <td>
         <table>
           <tr>
-            <td>
-              <button ng-click="item.addVote()" class="btn btn-danger xl">Vote</button>
+            <td width="150">
+              <button ng-click="item.addVote(); love = true" ng-hide="love || hate" class="btn btn-info xl">LOVE</button>
+              <button ng-click="item.subtractVote(); love = false" ng-hide="!love" class="btn btn-success xl">LOVED</button>
+              <button ng-click="item.subtractVote(); hate = true" ng-hide="hate || love" class="btn btn-info xl">HATE</button>
+              <button ng-click="item.addVote(); hate = false" ng-hide="!hate" class="btn btn-danger xl">HATED</button>
             </td>
             <td>
-        <table>
-          <tr>
-            <td>
-              <a class="title_link" href="{{ item.url }}" target="_blank">{{ item.title }}</a>
-            </td>
-          </tr>
-        </table>
-        <table>
-            <td>
-              <a ui-sref="links.comments({ linkId: item.id })">{{ item.comments.length }} Comments</a>
-            </td>
-            <td>
-              {{ item.points }} points since {{ item.dateCreated.toLocaleString() }}
-            </td>
-          </tr>
-        </table>
+          <table>
+            <tr>
+              <td>
+                <a class="title_link" href="{{ item.url }}" target="_blank">{{ item.title }}</a>
+              </td>
+            </tr>
+          </table>
+          <table>
+              <td>
+                <a ui-sref="links.comments({ linkId: item.id })">{{ item.comments.length }} Comments</a>
+              </td>
+              <td>
+                {{ item.points }} points since {{ item.dateCreated.toLocaleString() }}
+              </td>
+            </tr>
+          </table>
         </table>
       </td>
     </tr>
