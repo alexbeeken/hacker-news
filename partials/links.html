@@ -5,28 +5,54 @@
       <input type="text" ng-model="LinksFactory.linkTitle" size="50" class="form-control" placeholder="Enter a title" autofocus required>
     </div>
     <div class="form-group">
-      <input type="url" ng-model="LinksFactory.linkUrl" size="50" class="form-control" placeholder="Enter a link" required>
+      <input type="text" ng-model="LinksFactory.linkUrl" size="50" class="form-control" placeholder="Enter a link" required>
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
-
-<div ng-show="links.length">
+<style>
+td {
+  padding: 0 10px;
+}
+.title_link {
+  font-size: 28px;
+}
+</style>
+<div ng-show="links.length" class="col-md-12">
   <h3>Latest:</h3>
-  <ol>
-    <li ng-repeat="item in links | orderBy:'orderPost':true">
-      <button ng-click="item.addVote()">Vote</button>
-      &nbsp;&nbsp;
-      <a href="{{ item.url }}" target="_blank">{{ item.title }}</a>
-      &nbsp;&nbsp;
-      <a ui-sref="links.comments({ linkId: item.id })">{{ item.comments.length }} Comments</a>
-      &nbsp;&nbsp;
-      points: {{ item.points }}
-        &nbsp;&nbsp;
-      created: {{ item.dateCreated.toLocaleString() }}
+  <table>
+    <tr ng-repeat="item in links | orderBy:'orderPost':true">
+      <td>
+        <table>
+          <tr>
+            <td>
+              <button ng-click="item.addVote()" class="btn btn-danger xl">Vote</button>
+            </td>
+            <td>
+        <table>
+          <tr>
+            <td>
+              <a class="title_link" href="{{ item.url }}" target="_blank">{{ item.title }}</a>
+            </td>
+          </tr>
+        </table>
+        <table>
+            <td>
+              <a ui-sref="links.comments({ linkId: item.id })">{{ item.comments.length }} Comments</a>
+            </td>
+            <td>
+              {{ item.points }} points since {{ item.dateCreated.toLocaleString() }}
+            </td>
+          </tr>
+        </table>
+        </table>
+      </td>
+    </tr>
+  </table>
+      </td>
     </li>
-
-  </ol>
+  </ul>
 </div>
 </div>
 
+<br>
 <div ui-view> </div>

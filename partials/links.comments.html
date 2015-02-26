@@ -1,6 +1,6 @@
-<div class="col-md-6">
+<div class="col-md-12">
   <div ng-show="link.comments.length">
-    <h3>Comments for  <a href="{{ link.url }}" target="_blank">{{ link.title }}</a></h3>
+    <h3>Comments for {{ item.title }} <a href="{{ link.url }}" target="_blank">{{ link.title }}</a></h3>
     <ol>
       <li ng-repeat="item in link.comments">
         {{ item.comment }}
